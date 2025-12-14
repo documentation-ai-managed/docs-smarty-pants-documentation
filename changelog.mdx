@@ -1,0 +1,156 @@
+---
+title: Changelog
+description: Track updates and improvements to Smarty Pants with our version history.
+---
+
+## Changelog Overview
+
+Stay informed about the latest enhancements, bug fixes, and improvements in Smarty Pants. You review this changelog to understand new features, breaking changes, and upgrade instructions. Each release includes detailed notes on changes that affect your styling workflows.
+
+<Callout kind="info">
+  Subscribe to our RSS feed or GitHub notifications to get changelog updates directly.
+</Callout>
+
+<Columns cols={3}>
+  <Card title="Latest Stable" icon="check-circle" href="#v1-2-0">
+    Production-ready features and fixes.
+  </Card>
+  <Card title="Recent Features" icon="zap" href="#v1-1-0">
+    New utilities for responsive design.
+  </Card>
+  <Card title="Initial Release" icon="rocket" href="#v1-0-0">
+    Core functionality launch.
+  </Card>
+</Columns>
+
+## Recent Releases
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added dark mode auto-detection with `useDarkMode()` hook for dynamic theming.
+- Introduced `responsive()` utility for automatic breakpoint handling in styles.
+
+## Improvements
+
+- Optimized bundle size by 20% through tree-shaking enhancements.
+- Enhanced TypeScript definitions for better IntelliSense support.
+
+## Bug Fixes
+
+- Fixed CSS variable conflicts in nested components.
+- Resolved hydration mismatch issues in SSR environments.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Support for CSS Grid utilities with `grid()` and `gap()` helpers.
+- Added `animate()` function for declarative keyframe animations.
+
+## Improvements
+
+- Faster style injection with virtual CSS modules.
+- Better error reporting for invalid utility combinations.
+
+## Breaking Changes
+
+- Renamed `flexCenter()` to `centerFlex()` for consistency.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Core utility library with `styled()`, `css()`, and theme providers.
+- Built-in Tailwind-like utilities: `padding()`, `margin()`, `color()`.
+
+## Initial Setup
+
+- Full React integration with hooks and components.
+
+</Update>
+
+## Upgrade Guide
+
+Follow these steps to upgrade Smarty Pants to the latest version. You test in a staging environment first.
+
+<Steps>
+  <Step title="Check Compatibility" icon="search">
+    Review breaking changes in the relevant release notes above.
+  </Step>
+  <Step title="Update Package" icon="package">
+    Use your preferred package manager.
+
+    <CodeGroup tabs="npm,yarn,pnpm">
+      ```bash
+      npm install smarty-pants@latest
+      ```
+      ```bash
+      yarn add smarty-pants@latest
+      ```
+      ```bash
+      pnpm add smarty-pants@latest
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Update Imports" icon="code">
+    Replace deprecated utilities:
+
+    ```javascript
+    // Old
+    import { flexCenter } from 'smarty-pants';
+
+    // New
+    import { centerFlex } from 'smarty-pants';
+    ```
+  </Step>
+  <Step title="Test and Deploy" icon="check-circle">
+    Run your test suite and deploy.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="React" icon="react">
+    Ensure you wrap your app:
+
+    ```tsx
+    import { ThemeProvider } from 'smarty-pants';
+
+    function App() {
+      return (
+        <ThemeProvider theme={yourTheme}>
+          {/* Your components */}
+        </ThemeProvider>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="Next.js" icon="nextjs">
+    Add to `_app.tsx`:
+
+    ```tsx
+    import { ThemeProvider } from 'smarty-pants';
+
+    export default function MyApp({ Component, pageProps }) {
+      return (
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Expandable title="Older Versions" default-open="false">
+  For versions prior to v1.0.0, refer to the [GitHub releases page](https://github.com/smarty-pants/releases).
+</Expandable>
+
+<Callout kind="tip">
+  You report issues or suggest features on GitHub. Check the [contributing guide](/docs/contributing) to get started.
+</Callout>

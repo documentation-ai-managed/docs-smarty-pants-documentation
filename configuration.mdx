@@ -1,0 +1,165 @@
+---
+title: Configuration Options
+description: Learn how to customize your Smarty Pants documentation site with various configuration settings.
+---
+
+## Overview
+
+Customize your Smarty Pants documentation site by editing the configuration files. You control theme colors, sidebar navigation, and SEO metadata through simple JSON and JavaScript settings. Start with the main `smartypants.config.js` file in your project root.
+
+<Columns cols={3}>
+  <Card title="Theme & Branding" icon="palette" href="#theme-and-branding">
+    Set colors like your brand pink `#f90c84` and fonts.
+  </Card>
+  <Card title="Sidebar & Menu" icon="menu" href="#sidebar-and-menu">
+    Organize navigation links and collapsible sections.
+  </Card>
+  <Card title="SEO & Metadata" icon="search" href="#seo-and-metadata">
+    Optimize for search engines with titles and descriptions.
+  </Card>
+</Columns>
+
+## Theme and Branding
+
+Configure your site's appearance in `smartypants.config.js`. Set the primary color to `#f90c84` for a vibrant look matching your brand.
+
+<Steps>
+  <Step title="Edit Config File" icon="edit-3">
+    Open `smartypants.config.js` and update the theme object.
+  </Step>
+  <Step title="Add Brand Color" icon="palette">
+    Set `primaryColor` to `"#f90c84"`.
+  </Step>
+  <Step title="Restart Server" icon="refresh-cw">
+    Run `npm run dev` to apply changes.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="JavaScript,TypeScript">
+```javascript
+// smartypants.config.js
+export default {
+  theme: {
+    primaryColor: '#f90c84',
+    fontFamily: 'Inter, sans-serif',
+    logo: '/logo.svg'
+  }
+};
+```
+
+```typescript
+// smartypants.config.ts
+interface Config {
+  theme: {
+    primaryColor: string;
+    fontFamily: string;
+    logo: string;
+  };
+}
+
+const config: Config = {
+  theme: {
+    primaryColor: '#f90c84',
+    fontFamily: 'Inter, sans-serif',
+    logo: '/logo.svg'
+  }
+};
+
+export default config;
+```
+</CodeGroup>
+
+<Callout kind="tip">
+  Use hex codes like `#f90c84` for precise brand matching. Test colors in dark and light modes.
+</Callout>
+
+## Sidebar and Menu Customization
+
+Tailor your sidebar for better navigation. Add links, groups, and collapsible sections.
+
+<Tabs>
+  <Tab title="Basic Sidebar" icon="sidebar">
+    Update the `sidebar` array in your config.
+
+````javascript
+sidebar: [
+  { title: 'Introduction', href: '/docs/intro' },
+  {
+    title: 'Guides',
+    items: [
+      { title: 'Quickstart', href: '/docs/quickstart' },
+      { title: 'Configuration', href: '/docs/configuration' }
+    ]
+  }
+]
+````
+  </Tab>
+  <Tab title="Advanced Collapsible" icon="chevrons-down">
+    Use `collapsible: true` for expandable groups.
+
+````javascript
+sidebar: [
+  {
+    title: 'API Reference',
+    collapsible: true,
+    defaultOpen: false,
+    items: [
+      { title: 'Endpoints', href: '/docs/api/endpoints' }
+    ]
+  }
+]
+````
+  </Tab>
+</Tabs>
+
+<Expandable title="Custom Icons and External Links" default-open="false">
+  Add icons from Lucide and external links with `external: true`.
+
+```javascript
+{
+  title: 'GitHub',
+  href: 'https://github.com/smarty-pants/docs',
+  icon: 'github',
+  external: true
+}
+```
+</Expandable>
+
+## SEO and Metadata Options
+
+Improve discoverability with per-page and global SEO settings. Edit frontmatter in MDX files and global config.
+
+| Option | Location | Example Value | Purpose |
+|--------|----------|---------------|---------|
+| `title` | Frontmatter | `Configuration Options` | Page title in search results |
+| `description` | Frontmatter | `Customize your Smarty Pants site.` | Meta description snippet |
+| `keywords` | Global config | `['docs', 'configuration', 'smarty pants']` | Search engine keywords |
+| `canonical` | Frontmatter | `https://docs.smartypants.com/configuration` | Avoid duplicate content |
+
+<CodeGroup>
+```yaml
+---
+title: Configuration Options
+description: Learn how to customize your Smarty Pants documentation site.
+keywords: ['docs', 'config', 'theme']
+canonical: https://docs.smartypants.com/configuration
+---
+```
+
+```javascript
+// smartypants.config.js - Global SEO
+export default {
+  seo: {
+    defaultKeywords: ['smarty pants', 'documentation'],
+    author: 'Smarty Pants Team',
+    image: '/og-image.png'
+  }
+};
+```
+</CodeGroup>
+
+<Callout kind="alert">
+  Always include `title` and `description` in frontmatter for optimal SEO. Use unique descriptions per page.
+</Callout>
+
+These settings give you full control over your Smarty Pants documentation site. Experiment with combinations to match your brand perfectly.
